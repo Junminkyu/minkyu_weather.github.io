@@ -39,6 +39,7 @@ body{
 
 .search{
     width: 100%;
+    align-items: center;
     display:flex;
     align-items: center;
     justify-content: space-between;
@@ -73,19 +74,24 @@ body{
 
 .weather-icon{
     width:170px;
-    margin-top: 30px;
+    margin-top: 40px;
 }
 
 
 .weather h1{
-    font-size:80px;
+    font-size:45px;
     font-weight:500;
 }
 
 .weather h2{
-    font-size:45px;
+    font-size:90px;
     font-weight:400;
-    margin-top: 20px;
+}
+
+.weather h4{
+  font-size:25px;
+  font-weight:100;
+  margin-top:5px
 }
 
 .details{
@@ -143,6 +149,7 @@ body{
     display: inline-block;
     width: 60px;
     height: 34px;
+    margin-top: 10px;
   }
   
   .switch input { 
@@ -152,6 +159,7 @@ body{
   }
   
   .slider {
+  
     position: absolute;
     cursor: pointer;
     top: 0;
@@ -191,16 +199,13 @@ body{
   
   /* Rounded sliders */
   .slider.round {
+
     border-radius: 34px;
   }
   
   .slider.round:before {
+    
     border-radius: 50%;
-  }
-
-  .switch{
-    margin-top:20px;
-    align-items: center;
   }
 
   /*yo*/

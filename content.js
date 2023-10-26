@@ -77,6 +77,7 @@ const apiKey = "68451ea17fe3465a9146a23922a4daab";
                 
                 document.querySelector(".humidity").innerHTML = data.main.humidity+"%";
                 document.querySelector(".wind").innerHTML = data.wind.speed+" km/h";
+                document.querySelector(".status").innerHTML=data.weather[0].main;
                 document.querySelector(".undefined").style.display="none";
                 document.querySelector(".error").style.display="none";
 
