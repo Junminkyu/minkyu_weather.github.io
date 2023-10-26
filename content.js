@@ -6,7 +6,7 @@ const apiKey = "68451ea17fe3465a9146a23922a4daab";
             const weatherIcon=document.querySelector(".weather-icon");
             const slider = document.querySelector(".slider");
 
-            checkWeather('seoul');
+            checkWeather('minneapolis');
 
             slider.addEventListener('change',function(){
                 if(this.checked){
@@ -37,9 +37,7 @@ const apiKey = "68451ea17fe3465a9146a23922a4daab";
             })
 
             
-            
-            
-            
+                        
             
             
             async function checkWeather(city){
@@ -97,6 +95,7 @@ const apiKey = "68451ea17fe3465a9146a23922a4daab";
                     weatherIcon.src="images/mist.png"
                 }
                 checkWeather(city);
+                checkTime(city);
             }
 
             async function checkWeather(city){
@@ -116,6 +115,23 @@ const apiKey = "68451ea17fe3465a9146a23922a4daab";
                 else if(data.weather[0].main=="Mist"){
                     document.querySelector(".card").style.background='linear-gradient(135deg,#DCDCDC,#A9A9A9, #696969,#2F4F4F)';
                 }   
+            }
+
+            async function checkTime(city){
+                const id=data.timezone
+                const now = new Date();
+                const offsetTime = new Date(now.getTime() + (id * 1000));
+                var hours = offsetTime.getUTCHours();
+                var minutes = offsetTime.getUTCMinutes();
+                console.log(`${hours}:${minutes}`);
+                if(hours>12){
+                    hours-=12;
+                    document.querySelector(".time").innerHTML=`Local Time: ${hours}:${minutes} PM`;
+                }
+                else{
+                    document.querySelector(".time").innerHTML=`Local Time: ${hours}:${minutes} AM`;
+                }
+                requestAnimationFrame(checkTime);
             }
 
             function getFlagEmoji(countryCode) {
