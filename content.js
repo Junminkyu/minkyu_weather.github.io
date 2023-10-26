@@ -150,7 +150,8 @@ const apiKey = "68451ea17fe3465a9146a23922a4daab";
                     else{
                         document.querySelector(".time").innerHTML=`Local Time: ${hours}:${minutes} PM`;
                     }
-                    if(hours>10){
+
+                    if(hours>=10){
                         weatherIcon.src="images/moon.png"
                         document.querySelector(".card").style.background='linear-gradient(180deg,#0C0C43, #0B0B31,#1D1D1A)';
                     }
@@ -167,7 +168,7 @@ const apiKey = "68451ea17fe3465a9146a23922a4daab";
                     else{
                         document.querySelector(".time").innerHTML=`Local Time: ${hours}:${minutes} PM`;
                     }
-                    if(hours<5){
+                    if(hours<=5){
                         weatherIcon.src="images/moon.png"
                         document.querySelector(".card").style.background='linear-gradient(180deg,#0C0C43, #0B0B31,#1D1D1A)';
                     }
