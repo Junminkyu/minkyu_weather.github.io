@@ -94,14 +94,14 @@ const apiKey = "68451ea17fe3465a9146a23922a4daab";
                 else if(data.weather[0].main=="Mist"){
                     weatherIcon.src="images/mist.png"
                 }
-                checkWeather(city);
+                checkWeatherBackground(city);
                 checkTime(city);
             }
 
-            async function checkWeather(city){
+            async function checkWeatherBackground(city){
         
                 if(data.weather[0].main=="Clouds"){
-                    weatherIcon.src="images/clouds.png"
+                    document.querySelector(".card").style.background='linear-gradient(135deg,#00BFFF, #00feba)';   
                 }
                 else if(data.weather[0].main=="Clear"){
                     document.querySelector(".card").style.background='linear-gradient(135deg,#00BFFF, #00feba)';
@@ -110,11 +110,29 @@ const apiKey = "68451ea17fe3465a9146a23922a4daab";
                     document.querySelector(".card").style.background='linear-gradient(135deg,#DCDCDC,#A9A9A9, #696969,#2F4F4F)';
                 }
                 else if(data.weather[0].main=="Drizzle"){
-                    weatherIcon.src="images/drizzle.png"
+                    document.querySelector(".card").style.background='linear-gradient(135deg,#DCDCDC,#A9A9A9, #696969,#2F4F4F)';
                 }
                 else if(data.weather[0].main=="Mist"){
                     document.querySelector(".card").style.background='linear-gradient(135deg,#DCDCDC,#A9A9A9, #696969,#2F4F4F)';
                 }   
+            }
+
+            async function checkWeatherIcon(city){
+                if(data.weather[0].main=="Clouds"){
+                    weatherIcon.src="images/clouds.png"
+                }
+                else if(data.weather[0].main=="Clear"){
+                    weatherIcon.src="images/clear.png"
+                }
+                else if(data.weather[0].main=="Rain"){
+                    weatherIcon.src="images/rain.png"
+                }
+                else if(data.weather[0].main=="Drizzle"){
+                    weatherIcon.src="images/drizzle.png"
+                }
+                else if(data.weather[0].main=="Mist"){
+                    weatherIcon.src="images/mist.png"
+                }
             }
 
             async function checkTime(city){
@@ -126,10 +144,37 @@ const apiKey = "68451ea17fe3465a9146a23922a4daab";
                 console.log(`${hours}:${minutes}`);
                 if(hours>12){
                     hours-=12;
-                    document.querySelector(".time").innerHTML=`Local Time: ${hours}:${minutes} PM`;
+                    if(minutes<10){
+                        document.querySelector(".time").innerHTML=`Local Time: ${hours}:0${minutes} PM`;
+                    }
+                    else{
+                        document.querySelector(".time").innerHTML=`Local Time: ${hours}:${minutes} PM`;
+                    }
+                    if(hours>10){
+                        weatherIcon.src="images/moon.png"
+                        document.querySelector(".card").style.background='linear-gradient(180deg,#0C0C43, #0B0B31,#1D1D1A)';
+                    }
+                    else{
+                        checkWeatherBackground(city);
+                        checkWeatherIcon(city);
+                    }
+    
                 }
                 else{
-                    document.querySelector(".time").innerHTML=`Local Time: ${hours}:${minutes} AM`;
+                    if(minutes<10){
+                        document.querySelector(".time").innerHTML=`Local Time: ${hours}:0${minutes} PM`;
+                    }
+                    else{
+                        document.querySelector(".time").innerHTML=`Local Time: ${hours}:${minutes} PM`;
+                    }
+                    if(hours<5){
+                        weatherIcon.src="images/moon.png"
+                        document.querySelector(".card").style.background='linear-gradient(180deg,#0C0C43, #0B0B31,#1D1D1A)';
+                    }
+                    else{
+                        checkWeatherBackground(city);
+                        checkWeatherIcon(city);
+                    }
                 }
                 requestAnimationFrame(checkTime);
             }
