@@ -14,7 +14,7 @@ const apiKey = "68451ea17fe3465a9146a23922a4daab";
                     const celsiusValue = parseFloat(x);
                     if (!isNaN(celsiusValue)) {
                         const fahrenheitValue = Math.round((celsiusValue * 9/5) + 32);
-                        document.querySelector('.temp').innerHTML=fahrenheitValue+'°'
+                        document.querySelector('.temp').innerHTML=fahrenheitValue+'°F'
                     }
                 }
                 else{
@@ -22,7 +22,7 @@ const apiKey = "68451ea17fe3465a9146a23922a4daab";
                     const celsiusValue = parseFloat(x);
                     if (!isNaN(celsiusValue)) {
                         const fahrenheitValue = Math.round((celsiusValue-32) * 5/9);
-                        document.querySelector('.temp').innerHTML=fahrenheitValue+'°'
+                        document.querySelector('.temp').innerHTML=fahrenheitValue+'°C'
 
                 }
             }})
@@ -66,9 +66,12 @@ const apiKey = "68451ea17fe3465a9146a23922a4daab";
 
                 document.querySelector(".city").innerHTML = data.name+" "+getFlagEmoji(data.sys.country);
                 
-
-                document.querySelector(".temp").innerHTML = Math.round(data.main.temp)+"°";
-             
+                if(slider.checked){
+                    document.querySelector(".temp").innerHTML = Math.round(data.main.temp)+"°";
+                }
+                else{
+                    document.querySelector(".temp").innerHTML = Math.round(data.main.temp)+"°";
+                }    
                 
                 document.querySelector(".humidity").innerHTML = data.main.humidity+"%";
                 document.querySelector(".wind").innerHTML = data.wind.speed+" km/h";
@@ -76,29 +79,30 @@ const apiKey = "68451ea17fe3465a9146a23922a4daab";
                 document.querySelector(".undefined").style.display="none";
                 document.querySelector(".error").style.display="none";
 
-                if(data.weather[0].main=="Clouds"){
-                    weatherIcon.src="images/clouds.png"
-                }
-                else if(data.weather[0].main=="Clear"){
-                    weatherIcon.src="images/clear.png"
-                }
-                else if(data.weather[0].main=="Rain"){
-                    weatherIcon.src="images/rain.png"
-                }
-                else if(data.weather[0].main=="Drizzle"){
-                    weatherIcon.src="images/drizzle.png"
-                }
-                else if(data.weather[0].main=="Mist"){
-                    weatherIcon.src="images/mist.png"
-                }
-                checkWeatherBackground(city);
+                // if(data.weather[0].main=="Clouds"){
+                //     weatherIcon.src="images/clouds.png"
+                // }
+                // else if(data.weather[0].main=="Clear"){
+                //     weatherIcon.src="images/clear.png"
+                // }
+                // else if(data.weather[0].main=="Rain"){
+                //     weatherIcon.src="images/rain.png"
+                // }
+                // else if(data.weather[0].main=="Drizzle"){
+                //     weatherIcon.src="images/drizzle.png"
+                // }
+                // else if(data.weather[0].main=="Mist"){
+                //     weatherIcon.src="images/mist.png"
+                // }
+
                 checkTime(city);
+                
             }
 
             async function checkWeatherBackground(city){
         
                 if(data.weather[0].main=="Clouds"){
-                    document.querySelector(".card").style.background='linear-gradient(135deg,#00BFFF, #00feba)';   
+                    document.querySelector(".card").style.background='linear-gradient(135deg,#DCDCDC,#A9A9A9, #696969,#2F4F4F)';   
                 }
                 else if(data.weather[0].main=="Clear"){
                     document.querySelector(".card").style.background='linear-gradient(135deg,#00BFFF, #00feba)';
@@ -112,6 +116,19 @@ const apiKey = "68451ea17fe3465a9146a23922a4daab";
                 else if(data.weather[0].main=="Mist"){
                     document.querySelector(".card").style.background='linear-gradient(135deg,#DCDCDC,#A9A9A9, #696969,#2F4F4F)';
                 }   
+                else if(data.weather[0].main=="Haze"){
+                    document.querySelector(".card").style.background='linear-gradient(135deg,#DCDCDC,#A9A9A9, #696969,#2F4F4F)';
+                }
+                else if(data.weather[0].main=="Thunderstorm"){
+                    document.querySelector(".card").style.background='linear-gradient(135deg,#DCDCDC,#A9A9A9, #696969,#2F4F4F)';
+                }  
+                else if(data.weather[0].main=="Snow"){
+                    document.querySelector(".card").style.background='linear-gradient(135deg,#DCDCDC,#A9A9A9, #696969,#2F4F4F)';
+                }
+                else if(data.weather[0].main=="Atmosphere"){
+                    document.querySelector(".card").style.background='linear-gradient(135deg,#DCDCDC,#A9A9A9, #696969,#2F4F4F)';
+                }  
+                checkWeatherIcon(city);
             }
 
             async function checkWeatherIcon(city){
@@ -130,6 +147,18 @@ const apiKey = "68451ea17fe3465a9146a23922a4daab";
                 else if(data.weather[0].main=="Mist"){
                     weatherIcon.src="images/mist.png"
                 }
+                else if(data.weather[0].main=="Haze"){
+                    weatherIcon.src="images/drizzle.png" //need to be revised
+                }
+                else if(data.weather[0].main=="Thunderstorm"){
+                    weatherIcon.src="images/drizzles.png" //need to be reivsed
+                }
+                else if(data.weather[0].main=="Snow"){
+                    weatherIcon.src="images/drizzles.png"
+                }
+                else if(data.weather[0].main=="Atmosphere"){
+                    weatherIcon.src="images/drizzles.png"
+                }
             }
 
             async function checkTime(city){
@@ -147,14 +176,12 @@ const apiKey = "68451ea17fe3465a9146a23922a4daab";
                     else{
                         document.querySelector(".time").innerHTML=`Local Time: ${hours}:${minutes} PM`;
                     }
-
                     if(hours>=10){
                         weatherIcon.src="images/moon.png"
                         document.querySelector(".card").style.background='linear-gradient(180deg,#0C0C43, #0B0B31,#1D1D1A)';
                     }
                     else{
                         checkWeatherBackground(city);
-                        checkWeatherIcon(city);
                     }
     
                 }
@@ -171,7 +198,6 @@ const apiKey = "68451ea17fe3465a9146a23922a4daab";
                     }
                     else{
                         checkWeatherBackground(city);
-                        checkWeatherIcon(city);
                     }
                 }
                 requestAnimationFrame(checkTime);
