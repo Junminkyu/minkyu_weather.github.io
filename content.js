@@ -6,7 +6,7 @@ const apiKey = "68451ea17fe3465a9146a23922a4daab";
             const weatherIcon=document.querySelector(".weather-icon");
             const slider = document.querySelector(".slider");
 
-            checkWeather('tokyo');
+            checkWeather('seoul');
 
             slider.addEventListener('change',function(){
                 if(this.checked){
