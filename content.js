@@ -14,7 +14,7 @@ const apiKey = "68451ea17fe3465a9146a23922a4daab";
                     const celsiusValue = parseFloat(x);
                     if (!isNaN(celsiusValue)) {
                         const fahrenheitValue = Math.round((celsiusValue * 9/5) + 32);
-                        document.querySelector('.temp').innerHTML=fahrenheitValue+'°F'
+                        document.querySelector('.temp').innerHTML=fahrenheitValue+'°'
                     }
                 }
                 else{
@@ -22,7 +22,7 @@ const apiKey = "68451ea17fe3465a9146a23922a4daab";
                     const celsiusValue = parseFloat(x);
                     if (!isNaN(celsiusValue)) {
                         const fahrenheitValue = Math.round((celsiusValue-32) * 5/9);
-                        document.querySelector('.temp').innerHTML=fahrenheitValue+'°C'
+                        document.querySelector('.temp').innerHTML=fahrenheitValue+'°'
 
                 }
             }})
@@ -66,12 +66,9 @@ const apiKey = "68451ea17fe3465a9146a23922a4daab";
 
                 document.querySelector(".city").innerHTML = data.name+" "+getFlagEmoji(data.sys.country);
                 
-                if(slider.checked){
-                    document.querySelector(".temp").innerHTML = Math.round(data.main.temp)+"°F";
-                }
-                else{
-                    document.querySelector(".temp").innerHTML = Math.round(data.main.temp)+"°C";
-                }    
+
+                document.querySelector(".temp").innerHTML = Math.round(data.main.temp)+"°";
+             
                 
                 document.querySelector(".humidity").innerHTML = data.main.humidity+"%";
                 document.querySelector(".wind").innerHTML = data.wind.speed+" km/h";
