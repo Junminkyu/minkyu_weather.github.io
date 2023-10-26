@@ -14,7 +14,7 @@ const apiKey = "68451ea17fe3465a9146a23922a4daab";
                     const celsiusValue = parseFloat(x);
                     if (!isNaN(celsiusValue)) {
                         const fahrenheitValue = Math.round((celsiusValue * 9/5) + 32);
-                        document.querySelector('.temp').innerHTML=fahrenheitValue+'°F'
+                        document.querySelector('.temp').innerHTML=fahrenheitValue+'°'
                     }
                 }
                 else{
@@ -22,7 +22,7 @@ const apiKey = "68451ea17fe3465a9146a23922a4daab";
                     const celsiusValue = parseFloat(x);
                     if (!isNaN(celsiusValue)) {
                         const fahrenheitValue = Math.round((celsiusValue-32) * 5/9);
-                        document.querySelector('.temp').innerHTML=fahrenheitValue+'°C'
+                        document.querySelector('.temp').innerHTML=fahrenheitValue+'°'
 
                 }
             }})
