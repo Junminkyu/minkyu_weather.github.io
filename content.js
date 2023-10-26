@@ -187,10 +187,10 @@ const apiKey = "68451ea17fe3465a9146a23922a4daab";
                 }
                 else{
                     if(minutes<10){
-                        document.querySelector(".time").innerHTML=`Local Time: ${hours}:0${minutes} PM`;
+                        document.querySelector(".time").innerHTML=`Local Time: ${hours}:0${minutes} AM`;
                     }
                     else{
-                        document.querySelector(".time").innerHTML=`Local Time: ${hours}:${minutes} PM`;
+                        document.querySelector(".time").innerHTML=`Local Time: ${hours}:${minutes} AM`;
                     }
                     if(hours<=5){
                         weatherIcon.src="images/moon.png"
